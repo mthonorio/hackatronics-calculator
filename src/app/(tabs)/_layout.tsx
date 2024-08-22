@@ -12,8 +12,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Calculadora',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'CDC',
+          tabBarIcon: ({ color }) => <TabBarIcon name="calculator" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <HeaderButton />
@@ -24,8 +24,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Gráficos',
-          tabBarIcon: ({ color }) => <TabBarIcon name="line-chart" color={color} />,
+          title: 'PDT',
+          tabBarIcon: ({ color }) => <TabBarIcon name="calculator" color={color} />,
         }}
       />
       <Tabs.Screen

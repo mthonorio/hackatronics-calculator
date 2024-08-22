@@ -1,11 +1,10 @@
 import { Stack } from 'expo-router'
 import { useState } from 'react'
-import { Alert, Image, ScrollView, StyleSheet, View } from 'react-native'
+import { Alert, Image, ScrollView, View } from 'react-native'
 import { Float } from 'react-native/Libraries/Types/CodegenTypes'
 
 import { Button } from '~/components/Button'
 import { Input } from '~/components/Input'
-import { ScreenContent } from '~/components/ScreenContent'
 
 export default function Home() {
   const [vbb, setVbb] = useState('')
@@ -43,6 +42,22 @@ export default function Home() {
       Gain = Ic * Ib
     }
 
+    if (Rb === 0 && Re > 0) {
+      const Ve = Vbb - 0.7
+      const Ie = Ve / Re
+      const Ic = Ie
+      const Vc = Vcc - Ic * Rc
+      const Vce = Vc - Ve
+      const Pd = Vce * Ic
+
+      return Alert.alert(
+        'Resultados',
+        `Ib: ${Ib} A\nIc: ${Ic} A\nIe: ${Ie} A\nVce: ${Vce.toFixed(
+          2
+        )} V\nPd: ${Pd} W\n Ponto Q: ${Vce} V e ${Ic} A`
+      )
+    }
+
     const Ie = Ic + Ib
     const Vce = Vcc - Ic * Rc
     const Ic_sat = Vcc / Rc
@@ -52,7 +67,10 @@ export default function Home() {
     const Dot_Q = Vcc - Vce
     const Bcc_sat = Ic_sat / Ib
 
-    console.log('Ic:', Ic)
+    return Alert.alert(
+      'Resultados',
+      `Ib: ${Ib} A\nIc: ${Ic} A\nIe: ${Ie} A\nVce: ${Vce} V\nIc_sat: ${Ic_sat} A\nVce_sat: ${Vce_sat} V\nαcc: ${alpha_cc}\nPd: ${Pd} W\nDot Q: ${Dot_Q} V\nBcc_sat: ${Bcc_sat}`
+    )
   }
 
   function clearFields() {
@@ -66,7 +84,7 @@ export default function Home() {
 
   return (
     <>
-      <Stack.Screen options={{ title: 'Calculadora' }} />
+      <Stack.Screen options={{ title: 'CDC - Emissor comum' }} />
       <View className="flex-1 p-4">
         <ScrollView>
           <View className="w-full p-2">
@@ -129,10 +147,3 @@ export default function Home() {
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-  },
-})
