@@ -1,7 +1,7 @@
-import { Link, Tabs } from 'expo-router';
+import { Link, Tabs } from 'expo-router'
 
-import { HeaderButton } from '../../components/HeaderButton';
-import { TabBarIcon } from '../../components/TabBarIcon';
+import { HeaderButton } from '../../components/HeaderButton'
+import { TabBarIcon } from '../../components/TabBarIcon'
 
 export default function TabLayout() {
   return (
@@ -12,7 +12,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
+          title: 'Calculadora',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
@@ -24,10 +24,17 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
+          title: 'Gráficos',
           tabBarIcon: ({ color }) => <TabBarIcon name="line-chart" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="three"
+        options={{
+          title: 'Fórmulas',
+          tabBarIcon: ({ color }) => <TabBarIcon name="superscript" color={color} />,
+        }}
+      />
     </Tabs>
-  );
+  )
 }

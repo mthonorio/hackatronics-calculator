@@ -22,6 +22,10 @@
       "typedRoutes": true,
       "tsconfigPaths": true
     },
+    "paths": {
+      "assets": "./assets",
+      "~/": "./src"
+    },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

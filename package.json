@@ -1,6 +1,7 @@
 {
   "name": "hackatronics-calculator",
   "version": "1.0.0",
+  "author": "Matheus Honorio",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start --dev-client",
@@ -17,6 +18,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
     "@react-navigation/native": "^6.1.7",
+    "clsx": "^2.1.1",
     "expo": "^51.0.29",
     "expo-constants": "~16.0.1",
     "expo-dev-client": "~4.0.14",
