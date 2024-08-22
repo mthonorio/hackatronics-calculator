@@ -1,8 +1,9 @@
 import { Stack } from 'expo-router'
-import { SectionList, Text, View } from 'react-native'
+import { ScrollView, SectionList, Text, View } from 'react-native'
 import uuid from 'react-native-uuid'
 
 import { FormulaProps, FormulaItem } from '~/components/FormulaItem'
+import LegendsInfo from '~/components/LegendsInfo'
 
 type DataProps = {
   id: string
@@ -151,21 +152,22 @@ export default function Home() {
     <>
       <Stack.Screen options={{ title: 'Formulas' }} />
       <View className="flex-1 p-6">
-        {data.length > 0 ? (
-          <SectionList
-            sections={data}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <FormulaItem data={item} />}
-            renderSectionHeader={({ section: { title } }) => (
-              <Text className="text-2xl font-semibold">{title}</Text>
-            )}
-            contentContainerClassName="gap-4"
-          />
-        ) : (
-          <Text className="font-regular mb-6 mt-2 text-base text-zinc-500">
-            Nenhuma formula adicionada.
-          </Text>
-        )}
+        <ScrollView>
+          {data.length > 0 ? (
+            data.map((section) => (
+              <View key={section.title}>
+                <Text className="mb-2 text-xl font-bold">{section.title}</Text>
+                {section.data.map((item) => (
+                  <LegendsInfo key={item.title} title={item.title} description={item.formula} />
+                ))}
+              </View>
+            ))
+          ) : (
+            <Text className="font-regular mb-6 mt-2 text-base text-zinc-500">
+              Nenhuma formula adicionada.
+            </Text>
+          )}
+        </ScrollView>
       </View>
     </>
   )
