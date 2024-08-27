@@ -1,6 +1,7 @@
 import { Stack } from 'expo-router'
 import { ScrollView, SectionList, Text, View } from 'react-native'
 import uuid from 'react-native-uuid'
+import CardFormula from '~/components/CardFormula'
 
 import { FormulaProps, FormulaItem } from '~/components/FormulaItem'
 import LegendsInfo from '~/components/LegendsInfo'
@@ -25,62 +26,63 @@ const data: DataProps[] = [
       {
         id: `${uuid.v4()}`,
         title: 'Ganho de corrente',
-        formula: 'β_cc = I_c * I_b <=> I_c = β_cc * I_b <=> I_b = I_c / β_cc',
+        formula:
+          '\\beta_{cc} = \\frac{I_c}{I_b} \\iff I_c = \\beta_{cc} \\cdot I_b \\iff I_b = \\frac{I_c}{\\beta_{cc}}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Circuito da base EC - Tensão',
-        formula: 'V_bb = R_b * I_b + V_be',
+        formula: 'V_{bb} = R_b \\cdot I_b + V_{be}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Circuito da base EC - Corrente',
-        formula: 'I_b = (V_bb - V_be) / R_b',
+        formula: 'I_b = \\frac{V_{bb} - V_{be}}{R_b}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Circuito do coletor EC - Tensão',
-        formula: 'V_cc = R_c * I_c + V_ce',
+        formula: 'V_{cc} = R_c \\cdot I_c + V_{ce}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Circuito do coletor EC - Corrente',
-        formula: 'I_c = (V_cc - V_ce) / R_c',
+        formula: 'I_c = \\frac{V_{cc} - V_{ce}}{R_c}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Conexão emissor comum',
-        formula: 'V_ce > 1V e V_be = 0,7V',
+        formula: 'V_{ce} > 1\\text{V} \\text{ e } V_{be} = 0,7\\text{V}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Curvas do coletor',
-        formula: 'I_c = β_cc * I_b',
+        formula: 'I_c = \\beta_{cc} \\cdot I_b',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Tensão do coletor e emissor',
-        formula: 'V_ce = V_cc - I_c * R_c',
+        formula: 'V_{ce} = V_{cc} - I_c \\cdot R_c',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Potência dissipada no transistor',
-        formula: 'P_d = V_ce * I_c',
+        formula: 'P_d = V_{ce} \\cdot I_c',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Alfa CC',
-        formula: 'α_cc = I_c / I_e',
+        formula: '\\alpha_{cc} = \\frac{I_c}{I_e}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Relação entre o Alfa CC e Beta CC',
-        formula: 'β_cc = α_cc / 1 - α_cc',
+        formula: '\\beta_{cc} = \\frac{\\alpha_{cc}}{1 - \\alpha_{cc}}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Ponto de saturação - Corrente',
-        formula: 'Ic_sat = Vcc / Rc',
+        formula: 'I_{c_{sat}} = \\frac{V_{cc}}{R_c}',
       },
     ],
   },
@@ -91,57 +93,57 @@ const data: DataProps[] = [
       {
         id: `${uuid.v4()}`,
         title: 'Tensão de saída',
-        formula: 'V_out = (R2 / (R1 + R2)) * V_cc',
+        formula: 'V_{out} = \\frac{R_2}{R_1 + R_2} \\cdot V_{cc}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Corrente total na base',
-        formula: 'I = (V_cc) / (R1 + R2)',
+        formula: 'I = \\frac{V_{cc}}{R_1 + R_2}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Corrente na base 20x menor',
-        formula: 'I_b = I / 20',
+        formula: 'I_b = \\frac{I}{20}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Tensão de base <=> Corrente de base 20x menor',
-        formula: 'V_b = I * R2',
+        formula: 'V_b = I \\cdot R_2',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Tensão no emissor',
-        formula: 'V_e = V_2 - V_be ou V_e = V_b - V_be',
+        formula: 'V_e = V_2 - V_{be} \\text{ ou } V_e = V_b - V_{be}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Corrente no emissor',
-        formula: 'I_e = V_e / R_e',
+        formula: 'I_e = \\frac{V_e}{R_e}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Tensão no coletor',
-        formula: 'V_c = V_cc - I_e * R_c',
+        formula: 'V_c = V_{cc} - I_e \\cdot R_c',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Tensão coletor emissor',
-        formula: 'V_ce = V_c - V_e',
+        formula: 'V_{ce} = V_c - V_e',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Teste de corrente de base p/ 20x menor',
-        formula: 'I_b = I_e / β_cc',
+        formula: 'I_b = \\frac{I_e}{\\beta_{cc}}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Corrente no emissor-coletor saturado',
-        formula: 'Ic_sat = Vcc / (Rc + Re)',
+        formula: 'I_{c_{sat}} = \\frac{V_{cc}}{R_c + R_e}',
       },
       {
         id: `${uuid.v4()}`,
         title: 'Ponto Q',
-        formula: 'Vce e (Ie = Ic)',
+        formula: 'V_{ce} \\text{ e } (I_e = I_c)',
       },
     ],
   },
@@ -158,7 +160,7 @@ export default function Home() {
               <View key={section.title}>
                 <Text className="mb-2 text-xl font-bold">{section.title}</Text>
                 {section.data.map((item) => (
-                  <LegendsInfo key={item.title} title={item.title} description={item.formula} />
+                  <CardFormula key={item.title} title={item.title} formula={item.formula} />
                 ))}
               </View>
             ))
