@@ -15,7 +15,7 @@ type CircuitParams = {
   re: string
   r1: string
   r2: string
-  gain: string
+  gain?: string
 }
 
 type CalculationResults = {
@@ -39,7 +39,7 @@ const parseCircuitParams = (params: CircuitParams) => ({
   Re: parseFloat(params.re),
   R1: parseFloat(params.r1),
   R2: parseFloat(params.r2),
-  Gain: parseFloat(params.gain),
+  Gain: params.gain ? parseFloat(params.gain) : 0,
 })
 
 const areParamsValid = (params: Record<string, number>) =>
