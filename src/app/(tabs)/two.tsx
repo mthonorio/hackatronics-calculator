@@ -1,26 +1,13 @@
-import React, { useState, useCallback, useMemo } from 'react'
-import { Alert, Dimensions, Image, ScrollView, Text, View } from 'react-native'
+import React, { useState, useCallback } from 'react'
+import { Alert, Dimensions, Image, ScrollView, View } from 'react-native'
 import { Stack } from 'expo-router'
-import {
-  VictoryChart,
-  VictoryLine,
-  VictoryAxis,
-  VictoryScatter,
-  VictoryTheme,
-} from 'victory-native'
 import { Button } from '~/components/Button'
 import { Input } from '~/components/Input'
 import { formatElectricalUnit } from '~/utils/number'
+import { ResultsView } from '~/components/ResultsView'
+import { QPoint } from '~/types'
 
-const screenWidth = Dimensions.get('window').width
 const pdt_circuit_image = require('../../assets/images/pdt-polarized-current-divider.png')
-
-type QPoint = {
-  Vcc: number
-  Ic_sat: number
-  Vce: number
-  Ie: number
-}
 
 type CircuitParams = {
   vcc: string
@@ -86,48 +73,6 @@ const calculateCircuit = ({ Vcc, Rc, Re, R1, R2, Gain }: ReturnType<typeof parse
     Ic_sat,
     Q,
   }
-}
-
-const ResultsView = ({
-  result,
-  pointQ,
-}: {
-  result: string | undefined
-  pointQ: QPoint | undefined
-}) => {
-  if (!result || !pointQ) return null
-
-  return (
-    <View className="rounded-lg bg-white p-3">
-      <Text className="text-lg font-semibold">Resultados:</Text>
-      <Text className="text-base font-medium">{result}</Text>
-
-      <View className="py-2">
-        <Text className="mt-2 text-lg font-semibold">Gráfico do Ponto Q:</Text>
-        <VictoryChart
-          theme={VictoryTheme.material}
-          width={screenWidth * 0.9}
-          domain={{ x: [0, pointQ.Vcc], y: [0, pointQ.Ic_sat] }}>
-          <VictoryLine
-            data={[
-              { x: 0, y: pointQ.Ie },
-              { x: pointQ.Vce, y: 0 },
-            ]}
-          />
-          <VictoryAxis label={'V'} />
-          <VictoryAxis dependentAxis label={'A'} />
-          <VictoryScatter
-            data={[{ x: pointQ.Vce, y: pointQ.Ie }]}
-            size={6}
-            labels={({ datum }) => `Q`}
-            style={{
-              data: { fill: 'red' },
-            }}
-          />
-        </VictoryChart>
-      </View>
-    </View>
-  )
 }
 
 const formatResults = (results: CalculationResults): string => {

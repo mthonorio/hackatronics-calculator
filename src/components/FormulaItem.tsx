@@ -1,13 +1,7 @@
 import { Image, Text, View } from 'react-native'
+import { FormulaContents } from '~/types'
 
-export type FormulaProps = {
-  id: string
-  title: string
-  formula: string
-  image?: string
-}
-
-type Formula = { data: FormulaProps }
+type Formula = { data: FormulaContents }
 
 export const FormulaItem = ({ data }: Formula) => {
   return (
