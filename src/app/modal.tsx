@@ -73,7 +73,7 @@ export default function Modal() {
         {
           title: 'Ponto Q',
           description:
-            'Ponto de operação do transistor, utilizado para criar o gráfico é obtido através da subtração do Vcc - Vce',
+            'O ponto Q é o ponto de operação do transistor. Após identificado Vb, Ve, Ie ≈ Ic e Vc, é possível identificar o ponto Q, com Vce e Ic(Q) = (Vb - Vbe) / Re. Geralmente descrito como Q = [Vce, Ic(Q)].',
         },
       ],
     },

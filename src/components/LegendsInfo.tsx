@@ -10,7 +10,9 @@ const LegendsInfo: React.FC<LegendsInfoProps> = ({ title, description, ...props 
   return (
     <View style={styles.container} {...props}>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
+      <Text className="break-words" style={styles.description}>
+        {description}
+      </Text>
     </View>
   )
 }
