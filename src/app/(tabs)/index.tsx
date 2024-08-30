@@ -5,8 +5,11 @@ import { Button } from '~/components/Button'
 import { Input } from '~/components/Input'
 import { ResultsView } from '~/components/ResultsView'
 import { CircuitCommonResults, QPoint } from '~/types'
-import { calculateResults, calculateResultsForRbZero } from '~/utils/common_circuit'
-import { formatElectricalUnit } from '~/utils/number'
+import {
+  calculateResults,
+  calculateResultsForRbZero,
+} from '~/utils/common_circuit'
+import { formatElectricalUnit } from '~/utils/format'
 
 const circuitEmitterImage = require('../../assets/images/circuit_emitter.png')
 
@@ -69,10 +72,21 @@ export default function Home() {
       return setResult(formatResults(results))
     }
 
-    const results = calculateResults({ Vcc, Rc, Re, Ib, Ic }) as CircuitCommonResults & {
+    const results = calculateResults({
+      Vcc,
+      Rc,
+      Re,
+      Ib,
+      Ic,
+    }) as CircuitCommonResults & {
       Ic_sat: number
     }
-    setPointQ({ Vcc: parsedParams.Vcc, Ic_sat: results.Ic_sat, Vce: results.Vce, Ie: results.Ie })
+    setPointQ({
+      Vcc: parsedParams.Vcc,
+      Ic_sat: results.Ic_sat,
+      Vce: results.Vce,
+      Ie: results.Ie,
+    })
     setResult(formatResults(results))
   }, [params])
 
@@ -99,7 +113,8 @@ export default function Home() {
 
   // Function to format results in an string
   const formatResults = (results: CircuitCommonResults) => {
-    const { Ib, Ic, Ie, Vce, Pd, Ic_sat, Vce_sat, alpha_cc, Dot_Q, Bcc_sat } = results
+    const { Ib, Ic, Ie, Vce, Pd, Ic_sat, Vce_sat, alpha_cc, Dot_Q, Bcc_sat } =
+      results
     return `
     Ib: ${formatElectricalUnit(Ib)}A
     Ic: ${formatElectricalUnit(Ic)}A
@@ -126,7 +141,11 @@ export default function Home() {
       <View className="flex-1 p-4">
         <ScrollView>
           <View className="w-full p-2">
-            <Image source={circuitEmitterImage} className="w-full" resizeMode="contain" />
+            <Image
+              source={circuitEmitterImage}
+              className="w-full"
+              resizeMode="contain"
+            />
           </View>
           <View className="gap-4 p-2">
             {Object.keys(params).map((key) => (
@@ -134,13 +153,19 @@ export default function Home() {
                 <Input.Field
                   placeholder={key.toUpperCase()}
                   keyboardType="numeric"
-                  onChangeText={(value) => handleInputChange(key as keyof CircuitParams, value)}
+                  onChangeText={(value) =>
+                    handleInputChange(key as keyof CircuitParams, value)
+                  }
                   value={params[key as keyof CircuitParams]}
                 />
               </Input>
             ))}
             <ResultsView result={result} pointQ={pointQ} />
-            <Button title="Calculate" variant="primary" onPress={handleCalculateCircuit} />
+            <Button
+              title="Calculate"
+              variant="primary"
+              onPress={handleCalculateCircuit}
+            />
             <Button title="Clear" variant="tertiary" onPress={clearFields} />
           </View>
         </ScrollView>

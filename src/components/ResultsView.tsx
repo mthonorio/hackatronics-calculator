@@ -8,7 +8,7 @@ import {
   VictoryTheme,
 } from 'victory-native'
 import { QPoint } from '~/types'
-import { formatElectricalUnit } from '~/utils/number'
+import { formatElectricalUnit } from '~/utils/format'
 
 const screenWidth = Dimensions.get('window').width
 
@@ -28,7 +28,9 @@ export const ResultsView = ({
 
       {pointQ && (
         <View className="py-2">
-          <Text className="mt-2 text-lg font-semibold">Gráfico de Reta de Carga:</Text>
+          <Text className="mt-2 text-lg font-semibold">
+            Gráfico de Reta de Carga:
+          </Text>
           <VictoryChart
             theme={VictoryTheme.material}
             width={screenWidth * 0.9}
@@ -71,7 +73,11 @@ export const ResultsView = ({
                 `Q(${formatElectricalUnit(datum.x)}V, ${formatElectricalUnit(datum.y)}A)`
               }
               labelComponent={
-                <VictoryLabel dx={40} dy={-10} style={{ fontSize: 10, fontWeight: '500' }} />
+                <VictoryLabel
+                  dx={40}
+                  dy={-10}
+                  style={{ fontSize: 10, fontWeight: '500' }}
+                />
               }
               style={{
                 data: { fill: 'red' },

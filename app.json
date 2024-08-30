@@ -2,7 +2,7 @@
   "expo": {
     "name": "hackatronics-calculator",
     "slug": "hackatronics-calculator",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "scheme": "hackatronics-calculator",
     "web": {
       "bundler": "metro",
@@ -41,7 +41,7 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 2.3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

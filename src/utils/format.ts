@@ -1,3 +1,5 @@
+import { Alert } from "react-native";
+
 export function formatElectricalUnit(value: number): string {
   const units = [
     { factor: 1e-12, symbol: 'p' }, // pico (10^-12)
@@ -16,11 +18,17 @@ export function formatElectricalUnit(value: number): string {
 
   // Check if an appropriate unit was found (this is necessary to satisfy TypeScript's type system)
   if (!appropriateUnit) {
-    throw new Error('Value is too small to format');
+    Alert.alert('Error', 'Value is too small to format');
+    return `${value}`;
   }
 
   // Convert the value to the found unit
   const formattedValue = (value / appropriateUnit.factor).toFixed(2); // Rounded to 2 decimal places
 
   return `${formattedValue} ${appropriateUnit.symbol}`;
+}
+
+export function formatSvgToBase64(svgString: string): string {
+  console.log('svgString', svgString);
+  return `data:image/svg+xml;base64,${btoa(svgString)}`;
 }
